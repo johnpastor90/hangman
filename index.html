@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Twin Peaks</title>
+    <link rel="stylesheet" type="text/css" href="./resources/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+
+
+</head>
+<body>
+    <header class="header">
+        <h1>Twin Peaks</h1>
+        <h3>Hangman Game</h3>
+    </header>
+
+    <div class="underscores"></div>
+    <div class="right"></div>
+    <div class="wrong"></div>
+
+    <script>
+        const word = ["coffee", "pie", "cooper", "fbi", "audrey", "lynch", "investigation"]
+        let randNum = Math.floor(Math.random() * word.length);
+        let chosenWord = word[randNum];
+        let rightWord = [];
+        let wrongWord = [];
+        let underScore = [];
+        console.log(chosenWord);
+
+        let docUnderScore = document.getElementsByClassName('underscore');
+
+        let generateUnderscore = () => {
+            for(let i = 0; i < chosenWord.length; i++) {
+                underScore.push('_');
+                }
+            return underScore;
+        }
+        console.log(generateUnderscore());
+        
+        document.addEventListener('keypress', (event) => {
+            let keyword = String.fromCharCode(event.keycode);
+            console.log(keyword);
+            
+            if(chosenWord.indexOf(keyword) > -1) {
+                rightWord.push(keyword);
+                underScore[chosenWord.indexOf(keyword)] = keyword;
+                docUnderScore[0].innerHTML = underScore.join(' ');
+
+                if(underScore.join('') == chosenWord){
+                    alert("You won!");
+                }
+            
+            }
+           else{
+               wrongWord.push(keyword);
+           }
+        } );
+        
+          
+
+   </script>
+
+
+</body>
+</html>
